@@ -1,12 +1,13 @@
 package tests;
 
+import client.OrderClient;
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.Response;
 import org.junit.Test;
-import client.OrderClient;
 
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.instanceOf;
+import static org.hamcrest.Matchers.notNullValue;
 
 public class GetOrdersListTest {
     private final OrderClient orderClient = new OrderClient();

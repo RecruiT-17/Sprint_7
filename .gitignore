@@ -21,16 +21,16 @@ buildNumber.properties
 .project
 .factorypath
 
+# Allure
+.allure/
+*.allure
+
 # Logs
 *.log
 
 # OS
 .DS_Store
 Thumbs.db
-
-# Allure
-allure-results/
-allure-report/
 
 # Test data
 test-output/

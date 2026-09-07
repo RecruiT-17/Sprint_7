@@ -1,18 +1,17 @@
 package tests;
 
+import client.CourierClient;
 import io.qameta.allure.Description;
-import io.qameta.allure.Step;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.Response;
+import model.Courier;
+import model.CourierCredentials;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import client.CourierClient;
-import model.Courier;
-import model.CourierCredentials;
 import utils.TestDataGenerator;
 
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.equalTo;
 
 public class CreateCourierTest {
     private CourierClient courierClient;

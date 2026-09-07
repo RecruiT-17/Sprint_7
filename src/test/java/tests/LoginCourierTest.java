@@ -1,17 +1,18 @@
 package tests;
 
+import client.CourierClient;
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.Response;
+import model.Courier;
+import model.CourierCredentials;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import client.CourierClient;
-import model.Courier;
-import model.CourierCredentials;
 import utils.TestDataGenerator;
 
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.notNullValue;
 
 public class LoginCourierTest {
     private CourierClient courierClient;
@@ -91,15 +92,9 @@ public class LoginCourierTest {
 
         Response response = courierClient.loginCourier(credentials);
 
-        // Сервер может вернуть 400 или 504 (Timeout)
-        int statusCode = response.getStatusCode();
-        if (statusCode == 400) {
-            response.then()
-                    .body("message", equalTo("Недостаточно данных для входа"));
-        } else if (statusCode == 504) {
-            // Если сервер вернул 504, просто проверяем статус
-            System.out.println("Сервер вернул 504 Gateway Timeout - пропускаем проверку тела");
-        }
+        response.then()
+                .statusCode(400)
+                .body("message", equalTo("Недостаточно данных для входа"));
     }
 
     @Test
@@ -110,15 +105,9 @@ public class LoginCourierTest {
 
         Response response = courierClient.loginCourier(credentials);
 
-        // Сервер может вернуть 400 или 504 (Timeout)
-        int statusCode = response.getStatusCode();
-        if (statusCode == 400) {
-            response.then()
-                    .body("message", equalTo("Недостаточно данных для входа"));
-        } else if (statusCode == 504) {
-            // Если сервер вернул 504, просто проверяем статус
-            System.out.println("Сервер вернул 504 Gateway Timeout - пропускаем проверку тела");
-        }
+        response.then()
+                .statusCode(400)  // ← Ожидает 400, получает 504 → тест падает
+                .body("message", equalTo("Недостаточно данных для входа"));
     }
 
     @Test

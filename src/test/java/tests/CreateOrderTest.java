@@ -1,19 +1,20 @@
 package tests;
 
+import client.OrderClient;
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.Response;
+import model.Order;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import client.OrderClient;
-import model.Order;
 import utils.TestDataGenerator;
 
 import java.util.Arrays;
 import java.util.Collection;
 
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.instanceOf;
+import static org.hamcrest.Matchers.notNullValue;
 
 @RunWith(Parameterized.class)
 public class CreateOrderTest {
@@ -44,7 +45,7 @@ public class CreateOrderTest {
         Response response = orderClient.createOrder(order);
 
         response.then()
-                .statusCode(201)  // ← 201, не 200
+                .statusCode(201)
                 .body("track", notNullValue())
                 .body("track", instanceOf(Integer.class));
 

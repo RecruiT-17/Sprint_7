@@ -1,7 +1,7 @@
 package utils;
 
-import model.Order;
 import model.Courier;
+import model.Order;
 
 import java.util.Arrays;
 import java.util.List;

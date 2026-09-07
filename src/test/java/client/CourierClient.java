@@ -1,10 +1,10 @@
 package client;
 
+import config.Config;
 import io.qameta.allure.Step;
 import io.restassured.response.Response;
-import config.Config;
 import model.Courier;
-import model.CourierCredentials;  // ← правильный импорт
+import model.CourierCredentials;
 
 import static io.restassured.RestAssured.given;
 
